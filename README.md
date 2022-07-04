@@ -1,1 +1,1 @@
-# Test-Plugin
+# Example Plugin
