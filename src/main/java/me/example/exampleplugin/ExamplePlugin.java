@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ExamplePlugin extends JavaPlugin {
 
     // Avoid using "this"
-    private final JavaPlugin plugin = this;
+    private final ExamplePlugin plugin = this;
 
     // Get the ExampleManager instance
     private final ExampleManager exampleManager = new ExampleManager().getInstance();

@@ -1,6 +1,6 @@
 package me.example.exampleplugin.api;
 
-import org.bukkit.plugin.java.JavaPlugin;
+import me.example.exampleplugin.ExamplePlugin;
 
 public class ExampleManager {
 
@@ -12,13 +12,13 @@ public class ExampleManager {
     /**
      * The plugin instance of your Example Plugin.
      */
-    private JavaPlugin plugin;
+    private ExamplePlugin plugin;
 
     /**
      * Get the plugin instance.
      * @return Your plugin instance.
      */
-    public JavaPlugin getPlugin() {
+    public ExamplePlugin getPlugin() {
         return plugin;
     }
 
@@ -26,7 +26,7 @@ public class ExampleManager {
      * @param plugin
      * Load the plugin instance.
      */
-    public void loadPlugin(JavaPlugin plugin) {
+    public void loadPlugin(ExamplePlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -39,7 +39,7 @@ public class ExampleManager {
     }
 
     // Load your plugin and related code.
-    public void load(JavaPlugin plugin) {
+    public void load(ExamplePlugin plugin) {
         plugin.getLogger().info("Guten Tag!");
     }
 }
