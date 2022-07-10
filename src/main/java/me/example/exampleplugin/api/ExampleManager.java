@@ -11,6 +11,12 @@ public class ExampleManager {
      */
     private ExamplePlugin plugin;
 
+    public static ExamplePlugin instance;
+
+    public ExampleManager() {
+        instance = this;
+    }
+
     /**
      * Get the plugin instance.
      * @return Your plugin instance.

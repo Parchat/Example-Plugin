@@ -8,11 +8,9 @@ import org.bukkit.event.Listener;
 
 public class ExampleEvent implements Listener {
 
-    private final ExampleManager exampleManager = new ExampleManager();
-
     @EventHandler
     public void onAsyncChatEvent(AsyncChatEvent event) {
-        exampleManager.getPlugin().getLogger().info(event.getPlayer().getName());
+        ExampleManager.instance.getPlugin().getLogger().info(event.getPlayer().getName());
 
         event.getPlayer().sendMessage(Component.text("Guten Tag!"));
     }
