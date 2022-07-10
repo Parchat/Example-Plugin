@@ -53,9 +53,9 @@ tasks {
     shadowJar {
 
         // Example of re-locating.
-        listOf(
-         "io.papermc"
-        ).onEach { dep -> relocate(dep, "${rootProject.group}.plugin.lib.$dep") }
+        // listOf(
+        // "io.papermc"
+        // ).onEach { dep -> relocate(dep, "${rootProject.group}.plugin.lib.$dep") }
 
     }
 

@@ -9,7 +9,12 @@ public class ExamplePlugin extends JavaPlugin {
     private final ExamplePlugin plugin = this;
 
     // Get the ExampleManager instance
-    private final ExampleManager exampleManager = new ExampleManager();
+    private static final ExampleManager exampleManager = new ExampleManager();
+
+    // Create a static reference
+    public static ExampleManager getExampleManager() {
+        return exampleManager;
+    }
 
     @Override
     public void onEnable() {
