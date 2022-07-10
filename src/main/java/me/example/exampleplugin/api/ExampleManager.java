@@ -1,13 +1,10 @@
 package me.example.exampleplugin.api;
 
 import me.example.exampleplugin.ExamplePlugin;
+import me.example.exampleplugin.events.ExampleEvent;
+import org.bukkit.plugin.PluginManager;
 
 public class ExampleManager {
-
-    /**
-     * The instance of this class.
-     */
-    private static final ExampleManager instance = new ExampleManager();
 
     /**
      * The plugin instance of your Example Plugin.
@@ -19,7 +16,7 @@ public class ExampleManager {
      * @return Your plugin instance.
      */
     public ExamplePlugin getPlugin() {
-        return plugin;
+        return this.plugin;
     }
 
     /**
@@ -30,16 +27,13 @@ public class ExampleManager {
         this.plugin = plugin;
     }
 
-    /**
-     * Get the instance of your class.
-     * @return this;
-     */
-    public ExampleManager getInstance() {
-        return this;
-    }
-
     // Load your plugin and related code.
     public void load() {
         plugin.getLogger().info("Guten Tag!");
+
+        // Register listeners
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
+
+        pluginManager.registerEvents(new ExampleEvent(), plugin);
     }
 }

@@ -9,7 +9,7 @@ public class ExamplePlugin extends JavaPlugin {
     private final ExamplePlugin plugin = this;
 
     // Get the ExampleManager instance
-    private final ExampleManager exampleManager = new ExampleManager().getInstance();
+    private final ExampleManager exampleManager = new ExampleManager();
 
     @Override
     public void onEnable() {
