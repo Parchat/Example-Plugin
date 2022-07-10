@@ -45,6 +45,8 @@ dependencies {
         // This does not work for io.papermc because it doesn't exist in it.
         // exclude(group = "org.spigotmc", module = "spigot")
     }
+
+    compileOnly("com.google.inject:guice:5.1.0")
 }
 
 // Plugin tasks so you can compile it
@@ -61,7 +63,7 @@ tasks {
 
     reobfJar {
         // Set the output name based on your project name & version.
-        outputJar.set(rootProject.layout.buildDirectory.file("../run/plugins/${rootProject.name}-${rootProject.version}.jar"))
+        outputJar.set(rootProject.layout.buildDirectory.file("../run/plugins/${rootProject.name}-v[${rootProject.version}].jar"))
     }
 
     assemble {
