@@ -1,15 +1,29 @@
 package me.example.exampleplugin.api;
 
-import com.google.inject.Inject;
 import me.example.exampleplugin.ExamplePlugin;
+import me.example.exampleplugin.events.ExampleEvent;
+import org.bukkit.plugin.PluginManager;
 
 public class ExampleManager {
 
-    @Inject private final ExamplePlugin plugin;
+    /**
+     * The plugin instance of your Example Plugin.
+     */
+    private ExamplePlugin plugin;
 
-    private boolean isEnabled = false;
+    /**
+     * Get the plugin instance.
+     * @return Your plugin instance.
+     */
+    public ExamplePlugin getPlugin() {
+        return plugin;
+    }
 
-    public ExampleManager(ExamplePlugin plugin) {
+    /**
+     * @param plugin
+     * Load the plugin instance.
+     */
+    public void loadPlugin(ExamplePlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -17,14 +31,9 @@ public class ExampleManager {
     public void load() {
         plugin.getLogger().info("Guten Tag!");
 
-        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
+        // Register listeners
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
 
-        isEnabled = true;
-    }
-
-    public void stop() {
-        if (!isEnabled) return;
-
-        plugin.getLogger().info("See you later!");
+        pluginManager.registerEvents(new ExampleEvent(), plugin);
     }
 }

@@ -1,24 +1,19 @@
-package me.example.exampleplugin.listeners;
+package me.example.exampleplugin.events;
 
-import com.google.inject.Inject;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import me.example.exampleplugin.ExamplePlugin;
+import me.example.exampleplugin.api.ExampleManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class ExampleListener implements Listener {
+public class ExampleEvent implements Listener {
 
-    private final ExamplePlugin plugin;
-
-    @Inject
-    public ExampleListener(ExamplePlugin plugin) {
-        this.plugin = plugin;
-    }
+    private final ExampleManager exampleManager = ExamplePlugin.getExampleManager();
 
     @EventHandler
     public void onAsyncChatEvent(AsyncChatEvent event) {
-        plugin.getLogger().info(event.getPlayer().getName());
+        exampleManager.getPlugin().getLogger().info(event.getPlayer().getName());
 
         event.getPlayer().sendMessage(Component.text("Guten Tag!"));
     }
