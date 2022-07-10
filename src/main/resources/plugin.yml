@@ -3,6 +3,7 @@ name: Example-Plugin
 # The path of your plugin i.e me.example.exampleplugin.ExamplePlugin which can be edited in the build.gradle.kts.
 main: "${group}.ExamplePlugin"
 # The version of your plugin i.e 1.0.3-SNAPSHOT which can be edited in the build.gradle.kts.
+# We recommend you use semantic versioning: https://semver.org/
 version: ${version}
 # The api-version of your plugin i.e 1.13 for 1.13+ or 1.18 for 1.18+
 # 1.13, 1.14, 1.15, 1.16, 1.17, 1.18 and 1.19 are the available versions.
