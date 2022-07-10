@@ -15,8 +15,7 @@ public class ExamplePlugin extends JavaPlugin {
     public void onEnable() {
         exampleManager.loadPlugin(plugin);
 
-        // Always use a plugin pass through for this.
-        exampleManager.load(plugin);
+        exampleManager.load();
     }
 
     @Override
