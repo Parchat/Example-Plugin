@@ -39,7 +39,7 @@ public class ExampleManager {
     }
 
     // Load your plugin and related code.
-    public void load(ExamplePlugin plugin) {
+    public void load() {
         plugin.getLogger().info("Guten Tag!");
     }
 }
