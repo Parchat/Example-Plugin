@@ -45,6 +45,8 @@ dependencies {
         // This does not work for io.papermc because it doesn't exist in it.
         // exclude(group = "org.spigotmc", module = "spigot")
     }
+
+    implementation("com.google.inject:guice:5.1.0")
 }
 
 // Plugin tasks so you can compile it

@@ -30,12 +30,12 @@ website: "your-website.com"
 prefix: "Example-Plugin"
 
 # A list of plugins that are optional but required for certain features to work.
-softdepend:
-  - OtherPlugin
+#softdepend:
+#  - OtherPlugin
 
 # A list of plugins that load after your plugin.
-loadbefore:
-  - OtherPlugin
+#loadbefore:
+#  - OtherPlugin
 
 # Additionally you can do this as well
 
@@ -45,23 +45,22 @@ loadbefore:
 
 commands:
   # Name of command.
-  blank-command:
+  example:
     # What command does.
-    description: What do I do?
+    description: An example command.
     # Extra ways to run your command.
     aliases:
-      - one
-      - two
+      - example-2
     # An optional value but sets a permission by default so the command will not show up in tab complete.
-    permission: "you.need.me"
+    permission: "example.me"
     # Supply a no permission message.
     permission-message: "You do not have permission!"
     # Usage of command.
-    usage: /blank-command
+    usage: /example
 
 permissions:
   # Permission One
-  you.need.me:
+  example.me:
     # Change who gets it by default.
     # false means no one gets it including the children permissions.
     # true means everyone gets it including the children permissions.
@@ -70,14 +69,14 @@ permissions:
     # not op is the opposite of op meaning false.
     default: op
     children:
-      you.get.me.also: true
+      example.me.also: true
 
-  you.get.me.also:
+  example.me.also:
     default: false
 
 # A list of libraries to load from Maven Central.authors:
 # Some people swear not to use it, but it works, eliminates a need to relocate.authors:
 # Very useful for large dependencies not from Minecraft however you should still use specific libraries in their intended way.
-libraries:
+#libraries:
   # Example:
-  - com.squareup.okhttp3:okhttp:4.9.0
+#  - com.squareup.okhttp3:okhttp:4.9.0
