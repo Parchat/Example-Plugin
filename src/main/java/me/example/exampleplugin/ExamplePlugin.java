@@ -9,15 +9,14 @@ import me.example.exampleplugin.modules.BinderModule;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
-
 public class ExamplePlugin extends JavaPlugin {
+
+    private Injector injector;
+
+    private boolean isEnabled = false;
 
     @Inject
     private ExampleManager exampleManager;
-
-    @Inject
-    private ExamplePlugin examplePlugin;
 
     @Inject
     private ExampleListener listener;
@@ -27,23 +26,43 @@ public class ExamplePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        BinderModule module = new BinderModule(examplePlugin, exampleManager);
-        Injector injector = module.createInjector();
+        // Run in a try catch to make sure everything needed actually loads otherwise return.
+        try {
+            // We obviously need to bind it to something to begin with, so it isn't null.
+            exampleManager = new ExampleManager(this);
 
-        injector.injectMembers(examplePlugin);
+            // Guice injector
+            BinderModule module = new BinderModule(this, exampleManager);
 
-        exampleManager.load();
+            injector = module.createInjector();
 
-        // Register listeners
-        PluginManager pluginManager = getServer().getPluginManager();
+            injector.injectMembers(this);
 
-        pluginManager.registerEvents(listener, this);
+            // Now we can load.
+            exampleManager.load();
 
-        Objects.requireNonNull(getCommand("example")).setExecutor(command);
+            // Register listeners
+            PluginManager pluginManager = getServer().getPluginManager();
+
+            pluginManager.registerEvents(listener, this);
+
+            getCommand("example").setExecutor(command);
+        } catch (Exception e) {
+            getLogger().severe(e.getMessage());
+            getLogger().severe(e.getCause().getMessage());
+
+            return;
+        }
+
+        isEnabled = true;
     }
 
     @Override
     public void onDisable() {
+        if (!isEnabled) return;
+
         exampleManager.stop();
+
+        injector = null;
     }
 }
