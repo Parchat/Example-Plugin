@@ -16,7 +16,7 @@ public class ExampleManager {
      * @return Your plugin instance.
      */
     public ExamplePlugin getPlugin() {
-        return this.plugin;
+        return plugin;
     }
 
     /**
