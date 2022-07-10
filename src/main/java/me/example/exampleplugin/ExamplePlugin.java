@@ -9,9 +9,15 @@ import me.example.exampleplugin.modules.BinderModule;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
 public class ExamplePlugin extends JavaPlugin {
 
-    private final ExampleManager exampleManager = new ExampleManager(this);
+    @Inject
+    private ExampleManager exampleManager;
+
+    @Inject
+    private ExamplePlugin examplePlugin;
 
     @Inject
     private ExampleListener listener;
@@ -21,10 +27,10 @@ public class ExamplePlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        BinderModule module = new BinderModule(this, exampleManager);
+        BinderModule module = new BinderModule(examplePlugin, exampleManager);
         Injector injector = module.createInjector();
 
-        injector.injectMembers(this);
+        injector.injectMembers(examplePlugin);
 
         exampleManager.load();
 
@@ -33,7 +39,7 @@ public class ExamplePlugin extends JavaPlugin {
 
         pluginManager.registerEvents(listener, this);
 
-        getCommand("example").setExecutor(command);
+        Objects.requireNonNull(getCommand("example")).setExecutor(command);
     }
 
     @Override
