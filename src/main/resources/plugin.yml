@@ -1,14 +1,14 @@
 # The name of your plugin.
 name: Example-Plugin
-# The path of your plugin i.e me.example.exampleplugin.ExamplePlugin
+# The path of your plugin i.e me.example.exampleplugin.ExamplePlugin which can be edited in the build.gradle.kts.
 main: "${group}.ExamplePlugin"
-# The version of your plugin i.e 1.0.3-SNAPSHOT
+# The version of your plugin i.e 1.0.3-SNAPSHOT which can be edited in the build.gradle.kts.
 version: ${version}
 # The api-version of your plugin i.e 1.13 for 1.13+ or 1.18 for 1.18+
 # 1.13, 1.14, 1.15, 1.16, 1.17, 1.18 and 1.19 are the available versions.
 # Depending on this value tells the server your plugin has been coded for this version in mind or higher.
 api-version: 1.18
-# The description of your plugin.
+# The description of your plugin which can be edited in the build.gradle.kts.
 description: ${description}
 
 # The author of your plugin.
