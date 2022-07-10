@@ -23,20 +23,20 @@ load: STARTUP
 website: "your-website.com"
 
 # Any plugins here will require your example plugin to have them loaded to function.
-depend:
-  - OtherPlugin
+# depend:
+#  - OtherPlugin
 
 
 # Define your own prefix instead of using the plugin name
 prefix: "Beans"
 
 # A list of plugins that are optional but required for certain features to work.
-softdepend:
-  - OtherPlugin
+# softdepend:
+#  - OtherPlugin
 
-  # A list of plugins that load after your plugin.
-loadbefore:
-  - OtherPlugin
+# A list of plugins that load after your plugin.
+# loadbefore:
+#  - OtherPlugin
 
 
 # Additionally you can do this as well
