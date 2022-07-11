@@ -9,12 +9,8 @@ import org.bukkit.event.Listener;
 
 public class ExampleListener implements Listener {
 
-    private final ExamplePlugin plugin;
-
     @Inject
-    public ExampleListener(ExamplePlugin plugin) {
-        this.plugin = plugin;
-    }
+    private ExamplePlugin plugin;
 
     @EventHandler
     public void onAsyncChatEvent(AsyncChatEvent event) {

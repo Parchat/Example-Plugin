@@ -6,12 +6,12 @@ import com.google.inject.Injector;
 import me.example.exampleplugin.ExamplePlugin;
 import me.example.exampleplugin.api.ExampleManager;
 
-public class BinderModule extends AbstractModule {
+public class PluginModule extends AbstractModule {
 
     private final ExamplePlugin instance;
     private final ExampleManager exampleManager;
 
-    public BinderModule(ExamplePlugin plugin, ExampleManager exampleManager) {
+    public PluginModule(ExamplePlugin plugin, ExampleManager exampleManager) {
         this.instance = plugin;
 
         this.exampleManager = exampleManager;

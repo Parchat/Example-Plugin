@@ -5,7 +5,7 @@ import com.google.inject.Injector;
 import me.example.exampleplugin.api.ExampleManager;
 import me.example.exampleplugin.command.ExampleCommand;
 import me.example.exampleplugin.listeners.ExampleListener;
-import me.example.exampleplugin.modules.BinderModule;
+import me.example.exampleplugin.modules.PluginModule;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,7 +32,7 @@ public class ExamplePlugin extends JavaPlugin {
             exampleManager = new ExampleManager(this);
 
             // Guice injector
-            BinderModule module = new BinderModule(this, exampleManager);
+            PluginModule module = new PluginModule(this, exampleManager);
 
             injector = module.createInjector();
 

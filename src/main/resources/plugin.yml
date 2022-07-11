@@ -77,6 +77,6 @@ permissions:
 # A list of libraries to load from Maven Central.authors:
 # Some people swear not to use it, but it works, eliminates a need to relocate.authors:
 # Very useful for large dependencies not from Minecraft however you should still use specific libraries in their intended way.
-#libraries:
+libraries:
   # Example:
   - com.google.inject:guice:5.1.0
