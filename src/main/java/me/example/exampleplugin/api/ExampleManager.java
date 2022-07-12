@@ -1,15 +1,17 @@
 package me.example.exampleplugin.api;
 
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import me.example.exampleplugin.ExamplePlugin;
 
-@Singleton
 public class ExampleManager {
 
-    @Inject private ExamplePlugin plugin;
+    @Inject private final ExamplePlugin plugin;
 
     private boolean isEnabled = false;
+
+    public ExampleManager(ExamplePlugin plugin) {
+        this.plugin = plugin;
+    }
 
     // Load your plugin and related code.
     public void load() {
