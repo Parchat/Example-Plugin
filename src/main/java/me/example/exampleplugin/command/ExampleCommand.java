@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class ExampleCommand implements CommandExecutor {
 
-
     @Inject
     private ExamplePlugin examplePlugin;
 
