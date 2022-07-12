@@ -1,14 +1,15 @@
 # The name of your plugin.
 name: Example-Plugin
-# The path of your plugin i.e me.example.exampleplugin.ExamplePlugin
+# The path of your plugin i.e me.example.exampleplugin.ExamplePlugin which can be edited in the build.gradle.kts.
 main: "${group}.ExamplePlugin"
-# The version of your plugin i.e 1.0.3-SNAPSHOT
+# The version of your plugin i.e 1.0.3-SNAPSHOT which can be edited in the build.gradle.kts.
+# We recommend you use semantic versioning: https://semver.org/
 version: ${version}
 # The api-version of your plugin i.e 1.13 for 1.13+ or 1.18 for 1.18+
 # 1.13, 1.14, 1.15, 1.16, 1.17, 1.18 and 1.19 are the available versions.
 # Depending on this value tells the server your plugin has been coded for this version in mind or higher.
 api-version: 1.18
-# The description of your plugin.
+# The description of your plugin which can be edited in the build.gradle.kts.
 description: ${description}
 
 # The author of your plugin.
@@ -22,21 +23,19 @@ load: STARTUP
 website: "your-website.com"
 
 # Any plugins here will require your example plugin to have them loaded to function.
-depend:
-  - OtherPlugin
-
+# depend:
+#  - OtherPlugin
 
 # Define your own prefix instead of using the plugin name
-prefix: "Beans"
+prefix: "Example-Plugin"
 
 # A list of plugins that are optional but required for certain features to work.
-softdepend:
-  - OtherPlugin
+#softdepend:
+#  - OtherPlugin
 
-  # A list of plugins that load after your plugin.
-loadbefore:
-  - OtherPlugin
-
+# A list of plugins that load after your plugin.
+#loadbefore:
+#  - OtherPlugin
 
 # Additionally you can do this as well
 
@@ -46,23 +45,22 @@ loadbefore:
 
 commands:
   # Name of command.
-  blank-command:
+  example:
     # What command does.
-    description: What do I do?
+    description: An example command.
     # Extra ways to run your command.
     aliases:
-      - one
-      - two
+      - example-2
     # An optional value but sets a permission by default so the command will not show up in tab complete.
-    permission: "you.need.me"
+    permission: "example.me"
     # Supply a no permission message.
     permission-message: "You do not have permission!"
     # Usage of command.
-    usage: /blank-command
+    usage: /example
 
 permissions:
   # Permission One
-  you.need.me:
+  example.me:
     # Change who gets it by default.
     # false means no one gets it including the children permissions.
     # true means everyone gets it including the children permissions.
@@ -71,9 +69,9 @@ permissions:
     # not op is the opposite of op meaning false.
     default: op
     children:
-      you.get.me.also: true
+      example.me.also: true
 
-  you.get.me.also:
+  example.me.also:
     default: false
 
 # A list of libraries to load from Maven Central.authors:
@@ -81,4 +79,4 @@ permissions:
 # Very useful for large dependencies not from Minecraft however you should still use specific libraries in their intended way.
 libraries:
   # Example:
-  - com.squareup.okhttp3:okhttp:4.9.0
+  - com.google.inject:guice:5.1.0

@@ -4,6 +4,12 @@ plugins {
 
     // Shadow Jar Plugin for making fat jars using the shadowJar task
     id("com.github.johnrengelman.shadow") version "7.1.2"
+
+    // Paper-weight
+    id("io.papermc.paperweight.userdev") version "1.3.7"
+
+    // Run paper server for easy testing.
+    id("xyz.jpenilla.run-paper") version "1.0.6"
 }
 
 // Set to Java 17 which Paper requires.
@@ -12,6 +18,8 @@ java {
 }
 
 group = "me.example.exampleplugin"
+
+// System.getEnv("BUILD_NUMBER") is if you use Jenkins to build otherwise it just appends SNAPSHOT.
 version = "1.0.0-${System.getenv("BUILD_NUMBER") ?: "SNAPSHOT"}"
 description = "Example Plugin!"
 
@@ -29,20 +37,37 @@ dependencies {
     // Paper API
     compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
 
+    paperDevBundle("1.19-R0.1-SNAPSHOT")
+
     // An example of how to use implementation
     implementation("io.papermc:paperlib:1.0.7") {
         // Optional way to exclude certain modules.
         // This does not work for io.papermc because it doesn't exist in it.
         // exclude(group = "org.spigotmc", module = "spigot")
     }
+
+    compileOnly("com.google.inject:guice:5.1.0")
 }
 
 // Plugin tasks so you can compile it
 tasks {
-    // Responsible for shading in any dependencies
+    // Responsible for re-locating dependencies which reobfJar depends on.
     shadowJar {
+
+        // Example of re-locating.
+        // listOf(
+        // "io.papermc"
+        // ).onEach { dep -> relocate(dep, "${rootProject.group}.plugin.lib.$dep") }
+
+    }
+
+    reobfJar {
         // Set the output name based on your project name & version.
-        archiveFileName.set("${rootProject.name}-v${rootProject.version}.jar")
+        outputJar.set(rootProject.layout.buildDirectory.file("../run/plugins/${rootProject.name}-v[${rootProject.version}].jar"))
+    }
+
+    assemble {
+        dependsOn(reobfJar)
     }
 
     // Set to Java 17 which Paper requires.
