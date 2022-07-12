@@ -1,6 +1,5 @@
 package me.example.exampleplugin.api;
 
-import com.google.inject.Inject;
 import me.example.exampleplugin.ExamplePlugin;
 
 public class ExampleManager {
