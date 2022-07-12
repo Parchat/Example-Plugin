@@ -5,7 +5,7 @@ import me.example.exampleplugin.ExamplePlugin;
 
 public class ExampleManager {
 
-    @Inject private final ExamplePlugin plugin;
+    private final ExamplePlugin plugin;
 
     private boolean isEnabled = false;
 
