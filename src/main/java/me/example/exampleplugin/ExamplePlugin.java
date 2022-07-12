@@ -29,7 +29,7 @@ public class ExamplePlugin extends JavaPlugin {
         // Run in a try catch to make sure everything needed actually loads otherwise return.
         try {
             // We obviously need to bind it to something to begin with, so it isn't null.
-            exampleManager = new ExampleManager(this);
+            exampleManager = new ExampleManager();
 
             // Guice injector
             PluginModule module = new PluginModule(this, exampleManager);
@@ -49,7 +49,10 @@ public class ExamplePlugin extends JavaPlugin {
             getCommand("example").setExecutor(command);
         } catch (Exception e) {
             getLogger().severe(e.getMessage());
-            getLogger().severe(e.getCause().getMessage());
+
+            for (StackTraceElement stack : e.getStackTrace()) {
+                getLogger().severe(String.valueOf(stack));
+            }
 
             return;
         }

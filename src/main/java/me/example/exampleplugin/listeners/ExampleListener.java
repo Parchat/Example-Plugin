@@ -16,6 +16,8 @@ public class ExampleListener implements Listener {
     public void onAsyncChatEvent(AsyncChatEvent event) {
         plugin.getLogger().info(event.getPlayer().getName());
 
+        event.getPlayer().hidePlayer(plugin, event.getPlayer());
+
         event.getPlayer().sendMessage(Component.text("Guten Tag!"));
     }
 }

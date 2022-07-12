@@ -5,6 +5,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import me.example.exampleplugin.ExamplePlugin;
 import me.example.exampleplugin.api.ExampleManager;
+import javax.annotation.Nonnull;
 
 public class PluginModule extends AbstractModule {
 
@@ -17,6 +18,7 @@ public class PluginModule extends AbstractModule {
         this.exampleManager = exampleManager;
     }
 
+    @Nonnull
     public Injector createInjector() {
         return Guice.createInjector(this);
     }

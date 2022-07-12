@@ -63,7 +63,7 @@ tasks {
 
     reobfJar {
         // Set the output name based on your project name & version.
-        outputJar.set(rootProject.layout.buildDirectory.file("../run/plugins/${rootProject.name}-v[${rootProject.version}].jar"))
+        outputJar.set(rootProject.layout.buildDirectory.file("${rootProject.name}-v[${rootProject.version}].jar"))
     }
 
     assemble {

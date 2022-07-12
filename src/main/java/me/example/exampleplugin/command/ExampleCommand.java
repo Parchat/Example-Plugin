@@ -9,14 +9,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class ExampleCommand implements CommandExecutor {
 
-
     @Inject
-    private ExamplePlugin examplePlugin;
+    private ExamplePlugin plugin;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
-        examplePlugin.getLogger().finest("Guten Tag!");
+        plugin.getLogger().finest("Guten Tag!");
 
         sender.sendMessage("Command is working!");
         return true;
