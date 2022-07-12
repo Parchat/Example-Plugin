@@ -1,45 +1,30 @@
 package me.example.exampleplugin.api;
 
+import com.google.inject.Inject;
 import me.example.exampleplugin.ExamplePlugin;
 
 public class ExampleManager {
 
-    /**
-     * The instance of this class.
-     */
-    private static final ExampleManager instance = new ExampleManager();
+    @Inject private final ExamplePlugin plugin;
 
-    /**
-     * The plugin instance of your Example Plugin.
-     */
-    private ExamplePlugin plugin;
+    private boolean isEnabled = false;
 
-    /**
-     * Get the plugin instance.
-     * @return Your plugin instance.
-     */
-    public ExamplePlugin getPlugin() {
-        return plugin;
-    }
-
-    /**
-     * @param plugin
-     * Load the plugin instance.
-     */
-    public void loadPlugin(ExamplePlugin plugin) {
+    public ExampleManager(ExamplePlugin plugin) {
         this.plugin = plugin;
     }
 
-    /**
-     * Get the instance of your class.
-     * @return this;
-     */
-    public ExampleManager getInstance() {
-        return this;
+    // Load your plugin and related code.
+    public void load() {
+        plugin.getLogger().info("Guten Tag!");
+
+        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
+
+        isEnabled = true;
     }
 
-    // Load your plugin and related code.
-    public void load(ExamplePlugin plugin) {
-        plugin.getLogger().info("Guten Tag!");
+    public void stop() {
+        if (!isEnabled) return;
+
+        plugin.getLogger().info("See you later!");
     }
 }

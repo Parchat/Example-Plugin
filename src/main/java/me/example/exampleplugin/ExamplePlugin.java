@@ -1,26 +1,68 @@
 package me.example.exampleplugin;
 
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 import me.example.exampleplugin.api.ExampleManager;
+import me.example.exampleplugin.command.ExampleCommand;
+import me.example.exampleplugin.listeners.ExampleListener;
+import me.example.exampleplugin.modules.PluginModule;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ExamplePlugin extends JavaPlugin {
 
-    // Avoid using "this"
-    private final ExamplePlugin plugin = this;
+    private Injector injector;
 
-    // Get the ExampleManager instance
-    private final ExampleManager exampleManager = new ExampleManager().getInstance();
+    private boolean isEnabled = false;
+
+    @Inject
+    private ExampleManager exampleManager;
+
+    @Inject
+    private ExampleListener listener;
+
+    @Inject
+    private ExampleCommand command;
 
     @Override
     public void onEnable() {
-        exampleManager.loadPlugin(plugin);
+        // Run in a try catch to make sure everything needed actually loads otherwise return.
+        try {
+            // We obviously need to bind it to something to begin with, so it isn't null.
+            exampleManager = new ExampleManager(this);
 
-        // Always use a plugin pass through for this.
-        exampleManager.load(plugin);
+            // Guice injector
+            PluginModule module = new PluginModule(this, exampleManager);
+
+            injector = module.createInjector();
+
+            injector.injectMembers(this);
+
+            // Now we can load.
+            exampleManager.load();
+
+            // Register listeners
+            PluginManager pluginManager = getServer().getPluginManager();
+
+            pluginManager.registerEvents(listener, this);
+
+            getCommand("example").setExecutor(command);
+        } catch (Exception e) {
+            getLogger().severe(e.getMessage());
+            getLogger().severe(e.getCause().getMessage());
+
+            return;
+        }
+
+        isEnabled = true;
     }
 
     @Override
     public void onDisable() {
-        getServer().getLogger().info("See you later!");
+        if (!isEnabled) return;
+
+        exampleManager.stop();
+
+        injector = null;
     }
 }
