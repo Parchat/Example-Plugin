@@ -6,7 +6,6 @@ import me.example.exampleplugin.ExamplePlugin;
 import me.example.exampleplugin.Methods;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;

@@ -2,6 +2,7 @@ package me.example.exampleplugin;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import me.example.exampleplugin.api.ExampleManager;
 import me.example.exampleplugin.api.FileManager;
 import me.example.exampleplugin.command.ExampleCommand;
@@ -11,6 +12,7 @@ import me.example.exampleplugin.modules.PluginModule;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+@Singleton
 public class ExamplePlugin extends JavaPlugin {
 
     private Injector injector;
