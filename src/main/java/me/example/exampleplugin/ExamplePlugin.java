@@ -3,7 +3,9 @@ package me.example.exampleplugin;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import me.example.exampleplugin.api.ExampleManager;
+import me.example.exampleplugin.api.FileManager;
 import me.example.exampleplugin.command.ExampleCommand;
+import me.example.exampleplugin.command.ExampleTab;
 import me.example.exampleplugin.listeners.ExampleListener;
 import me.example.exampleplugin.modules.PluginModule;
 import org.bukkit.plugin.PluginManager;
@@ -19,10 +21,16 @@ public class ExamplePlugin extends JavaPlugin {
     private ExampleManager exampleManager;
 
     @Inject
+    private FileManager fileManager;
+
+    @Inject
     private ExampleListener listener;
 
     @Inject
     private ExampleCommand command;
+
+    @Inject
+    private ExampleTab tab;
 
     @Override
     public void onEnable() {
@@ -31,12 +39,17 @@ public class ExamplePlugin extends JavaPlugin {
             // We obviously need to bind it to something to begin with, so it isn't null.
             exampleManager = new ExampleManager();
 
+            fileManager = new FileManager();
+
             // Guice injector
-            PluginModule module = new PluginModule(this, exampleManager);
+            PluginModule module = new PluginModule(this, exampleManager, fileManager);
 
             injector = module.createInjector();
 
             injector.injectMembers(this);
+
+            // Setup files.
+            fileManager.registerCustomFolder("/test").registerDefaultGenerateFiles("Test.yml", "/test").setup().isLogging(true);
 
             // Now we can load.
             exampleManager.load();
@@ -47,6 +60,7 @@ public class ExamplePlugin extends JavaPlugin {
             pluginManager.registerEvents(listener, this);
 
             getCommand("example").setExecutor(command);
+            getCommand("example").setTabCompleter(tab);
         } catch (Exception e) {
             getLogger().severe(e.getMessage());
 

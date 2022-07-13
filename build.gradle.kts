@@ -28,6 +28,8 @@ repositories {
     // A centralized hub for dependencies
     mavenCentral()
 
+    maven("https://jitpack.io")
+
     // Paper API
     maven("https://repo.papermc.io/repository/maven-public/")
 }

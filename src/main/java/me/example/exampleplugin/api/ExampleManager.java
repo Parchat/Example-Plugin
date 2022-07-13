@@ -2,26 +2,26 @@ package me.example.exampleplugin.api;
 
 import com.google.inject.Inject;
 import me.example.exampleplugin.ExamplePlugin;
+import me.example.exampleplugin.api.config.Config;
 
 public class ExampleManager {
 
     @Inject
     private ExamplePlugin plugin;
 
-    private boolean isEnabled = false;
+    @Inject
+    private Config config;
 
     // Load your plugin and related code.
     public void load() {
         plugin.getLogger().info("Guten Tag!");
 
-        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
-
-        isEnabled = true;
+        config.load();
     }
 
     public void stop() {
-        if (!isEnabled) return;
+        plugin.getLogger().info("Bis Später");
 
-        plugin.getLogger().info("See you later!");
+        config.save();
     }
 }

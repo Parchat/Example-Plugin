@@ -59,23 +59,31 @@ commands:
     usage: /example
 
 permissions:
-  # Permission One
-  example.me:
+  # Player wildcard
+  example.player.*:
     # Change who gets it by default.
     # false means no one gets it including the children permissions.
     # true means everyone gets it including the children permissions.
 
     # op will default true if player is op.
     # not op is the opposite of op meaning false.
+    default: true
+    children:
+      example.help: true
+
+  example.admin.*:
     default: op
     children:
-      example.me.also: true
+      example.reload: true
 
-  example.me.also:
+  example.help:
     default: false
 
+  example.reload:
+    default: op
+
 # A list of libraries to load from Maven Central.authors:
-# Some people swear not to use it, but it works, eliminates a need to relocate.authors:
+# Some people swear not to use it, but it works, eliminates a need to relocate
 # Very useful for large dependencies not from Minecraft however you should still use specific libraries in their intended way.
 libraries:
   # Example:
