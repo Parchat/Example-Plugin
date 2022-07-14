@@ -9,12 +9,11 @@ import me.example.exampleplugin.api.FileManager;
 import me.example.exampleplugin.api.config.interfaces.IConfigFile;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-
 import java.io.File;
 import java.io.InputStream;
 
 @Singleton
-public class Lang implements IConfigFile {
+public class ConfigFile implements IConfigFile {
 
     @Inject
     @Named("ConfigFolder")
@@ -32,10 +31,10 @@ public class Lang implements IConfigFile {
     private File blankFile = null;
 
     private void create() {
-        blankFile = new File(configFolder, "/" + "lang.yml");
+        blankFile = new File(configFolder, "/" + "config.yml");
 
         if (!blankFile.exists()) {
-            InputStream jarFile = plugin.getClass().getResourceAsStream("/" + "lang.yml");
+            InputStream jarFile = plugin.getClass().getResourceAsStream("/" + "config.yml");
             methods.copyFile(jarFile, blankFile);
         }
     }

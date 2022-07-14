@@ -7,8 +7,10 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+// A listener example.
 public class ExampleListener implements Listener {
 
+    // An example of injecting our plugin instance.
     @Inject
     private ExamplePlugin plugin;
 

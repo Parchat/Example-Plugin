@@ -3,33 +3,38 @@ package me.example.exampleplugin.api;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import me.example.exampleplugin.ExamplePlugin;
-import me.example.exampleplugin.api.config.Config;
-import me.example.exampleplugin.api.config.Lang;
+import me.example.exampleplugin.api.config.ConfigFile;
+import me.example.exampleplugin.api.config.LangFile;
 
+// Classes like this must be annotated with @Singleton
 @Singleton
 public class ExampleManager {
 
+    // An example of how to call our plugin instance.
     @Inject
     private ExamplePlugin plugin;
 
+    // An example of how to get a config file.
     @Inject
-    private Config config;
+    private ConfigFile configFile;
 
     @Inject
-    private Lang lang;
+    private LangFile langFile;
 
     // Load your plugin and related code.
     public void load() {
         plugin.getLogger().info("Guten Tag!");
 
-        config.load();
-        lang.load();
+        // Load the files.
+        configFile.load();
+        langFile.load();
     }
 
     public void stop() {
         plugin.getLogger().info("Bis Später");
 
-        config.save();
-        lang.save();
+        // Save the files.
+        configFile.save();
+        langFile.save();
     }
 }

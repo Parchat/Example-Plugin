@@ -14,19 +14,23 @@ import java.util.HashMap;
 @Singleton
 public class FileManager {
 
+    // Fetch our plugin instance.
     @Inject
     private ExamplePlugin plugin;
 
+    // Inject our Methods class.
     @Inject
     private Methods methods;
 
+    // Stores our files like ConfigFile, so we can get & set or reload
     private final HashMap<String, FileConfiguration> fileConfigurations = new HashMap<>();
     private final HashMap<String, File> files = new HashMap<>();
 
+    // If we should log changes or not.
     private boolean logChanges = false;
 
-    // Custom file generation!
-
+    // All related to how custom files are created.
+    // I'll write more comments on what some of this does later.
     private final ArrayList<String> homeFolders = new ArrayList<>();
     private final ArrayList<CustomFile> customFiles = new ArrayList<>();
     private final HashMap<String, String> jarHomeFolders = new HashMap<>();

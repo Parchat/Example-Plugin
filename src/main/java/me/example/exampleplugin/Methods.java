@@ -6,12 +6,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+// Labeled as a singleton as it should be.
 @Singleton
 public class Methods {
 
+    // Our plugin instance.
     @Inject
     private ExamplePlugin plugin;
 
+    // This is what copies files out of src/main/resources
     public void copyFile(InputStream sourceFile, File destinationFile) {
         try (InputStream fis = sourceFile; FileOutputStream fos = new FileOutputStream(destinationFile)) {
             byte[] buf = new byte[1024];

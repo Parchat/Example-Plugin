@@ -5,8 +5,8 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import me.example.exampleplugin.api.ExampleManager;
 import me.example.exampleplugin.api.FileManager;
-import me.example.exampleplugin.api.config.Config;
-import me.example.exampleplugin.api.config.Lang;
+import me.example.exampleplugin.api.config.ConfigFile;
+import me.example.exampleplugin.api.config.LangFile;
 import me.example.exampleplugin.command.ExampleCommand;
 import me.example.exampleplugin.command.ExampleTab;
 import me.example.exampleplugin.listeners.ExampleListener;
@@ -31,28 +31,29 @@ public class ExamplePlugin extends JavaPlugin {
 
     @Inject private ExampleTab tab;
 
-    @Inject private Config config;
+    @Inject private ConfigFile configFile;
 
-    @Inject private Lang lang;
+    @Inject private LangFile langFile;
 
     @Override
     public void onEnable() {
         // Run in a try catch to make sure everything needed actually loads otherwise return.
         try {
-            // We obviously need to bind it to something to begin with, so it isn't null.
+            // We obviously need to bind it to something to begin with, so it isn't null which allows us to use @Inject annotation with it.
             exampleManager = new ExampleManager();
             fileManager = new FileManager();
-            config = new Config();
-            lang = new Lang();
+            configFile = new ConfigFile();
+            langFile = new LangFile();
 
-            // Guice injector
-            PluginModule module = new PluginModule(this, config, lang, exampleManager, fileManager);
+            // Guice injector which is like Lombok, It's a proper way to use dependency injection.
+            PluginModule module = new PluginModule(this, configFile, langFile, exampleManager, fileManager);
 
             injector = module.createInjector();
 
             injector.injectMembers(this);
 
-            // Setup files.
+            // An example of how to set up basic files.
+            // Check src/main/resources for where these files come from.
             fileManager.registerCustomFolder("/test").registerDefaultGenerateFiles("Test.yml", "/test").setup().isLogging(true);
 
             // Now we can load.

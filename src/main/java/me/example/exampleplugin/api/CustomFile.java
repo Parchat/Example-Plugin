@@ -7,16 +7,21 @@ import java.io.File;
 
 public class CustomFile {
 
+    // Other misc settings.
     private final String name;
     private final String fileName;
     private final String homeFolder;
 
+    // our file configuration
     FileConfiguration file;
 
+    // A blank file variable we pass around
     private final File blankFile;
 
+    // Our example plugin
     private final ExamplePlugin plugin;
 
+    // If we should log or not.
     private final boolean loggable;
 
     /**

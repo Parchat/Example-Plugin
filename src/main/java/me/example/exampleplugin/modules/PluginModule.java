@@ -7,8 +7,8 @@ import com.google.inject.name.Names;
 import me.example.exampleplugin.ExamplePlugin;
 import me.example.exampleplugin.api.ExampleManager;
 import me.example.exampleplugin.api.FileManager;
-import me.example.exampleplugin.api.config.Config;
-import me.example.exampleplugin.api.config.Lang;
+import me.example.exampleplugin.api.config.ConfigFile;
+import me.example.exampleplugin.api.config.LangFile;
 
 import javax.annotation.Nonnull;
 import java.io.File;
@@ -20,17 +20,17 @@ public class PluginModule extends AbstractModule {
     private final ExampleManager exampleManager;
     private final FileManager fileManager;
 
-    private final Config config;
-    private final Lang lang;
+    private final ConfigFile configFile;
+    private final LangFile langFile;
 
-    public PluginModule(ExamplePlugin plugin, Config config, Lang lang, ExampleManager exampleManager, FileManager fileManager) {
+    public PluginModule(ExamplePlugin plugin, ConfigFile configFile, LangFile langFile, ExampleManager exampleManager, FileManager fileManager) {
         this.plugin = plugin;
 
         this.exampleManager = exampleManager;
         this.fileManager = fileManager;
 
-        this.config = config;
-        this.lang = lang;
+        this.configFile = configFile;
+        this.langFile = langFile;
     }
 
     @Nonnull
@@ -45,8 +45,8 @@ public class PluginModule extends AbstractModule {
         bind(FileManager.class).toInstance(fileManager);
         bind(ExampleManager.class).toInstance(exampleManager);
 
-        bind(Config.class).toInstance(config);
-        bind(Lang.class).toInstance(lang);
+        bind(ConfigFile.class).toInstance(configFile);
+        bind(LangFile.class).toInstance(langFile);
 
         bind(File.class).annotatedWith(Names.named("ConfigFolder")).toInstance(plugin.getDataFolder());
     }
