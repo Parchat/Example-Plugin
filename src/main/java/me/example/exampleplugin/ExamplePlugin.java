@@ -5,6 +5,8 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import me.example.exampleplugin.api.ExampleManager;
 import me.example.exampleplugin.api.FileManager;
+import me.example.exampleplugin.api.config.Config;
+import me.example.exampleplugin.api.config.Lang;
 import me.example.exampleplugin.command.ExampleCommand;
 import me.example.exampleplugin.command.ExampleTab;
 import me.example.exampleplugin.listeners.ExampleListener;
@@ -19,32 +21,32 @@ public class ExamplePlugin extends JavaPlugin {
 
     private boolean isEnabled = false;
 
-    @Inject
-    private ExampleManager exampleManager;
+    @Inject private ExampleManager exampleManager;
 
-    @Inject
-    private FileManager fileManager;
+    @Inject private FileManager fileManager;
 
-    @Inject
-    private ExampleListener listener;
+    @Inject private ExampleListener listener;
 
-    @Inject
-    private ExampleCommand command;
+    @Inject private ExampleCommand command;
 
-    @Inject
-    private ExampleTab tab;
+    @Inject private ExampleTab tab;
+
+    @Inject private Config config;
+
+    @Inject private Lang lang;
 
     @Override
     public void onEnable() {
         // Run in a try catch to make sure everything needed actually loads otherwise return.
         try {
             // We obviously need to bind it to something to begin with, so it isn't null.
-            //exampleManager = new ExampleManager();
-
-            //fileManager = new FileManager();
+            exampleManager = new ExampleManager();
+            fileManager = new FileManager();
+            config = new Config();
+            lang = new Lang();
 
             // Guice injector
-            PluginModule module = new PluginModule(this);
+            PluginModule module = new PluginModule(this, config, lang, exampleManager, fileManager);
 
             injector = module.createInjector();
 
