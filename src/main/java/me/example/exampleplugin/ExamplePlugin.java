@@ -39,12 +39,12 @@ public class ExamplePlugin extends JavaPlugin {
         // Run in a try catch to make sure everything needed actually loads otherwise return.
         try {
             // We obviously need to bind it to something to begin with, so it isn't null.
-            exampleManager = new ExampleManager();
+            //exampleManager = new ExampleManager();
 
-            fileManager = new FileManager();
+            //fileManager = new FileManager();
 
             // Guice injector
-            PluginModule module = new PluginModule(this, exampleManager, fileManager);
+            PluginModule module = new PluginModule(this);
 
             injector = module.createInjector();
 
