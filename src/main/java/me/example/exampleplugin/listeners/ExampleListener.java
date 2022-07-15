@@ -11,8 +11,7 @@ import org.bukkit.event.Listener;
 public class ExampleListener implements Listener {
 
     // An example of injecting our plugin instance.
-    @Inject
-    private ExamplePlugin plugin;
+    @Inject private ExamplePlugin plugin;
 
     @EventHandler
     public void onAsyncChatEvent(AsyncChatEvent event) {

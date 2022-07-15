@@ -12,12 +12,10 @@ import org.jetbrains.annotations.NotNull;
 public class ExampleCommand implements CommandExecutor {
 
     // An example of injecting our plugin instance.
-    @Inject
-    private ExamplePlugin plugin;
+    @Inject private ExamplePlugin plugin;
 
     // An example of injecting our config instance.
-    @Inject
-    private ConfigFile configFile;
+    @Inject private ConfigFile configFile;
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

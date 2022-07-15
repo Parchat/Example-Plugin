@@ -15,19 +15,21 @@ import java.io.InputStream;
 @Singleton
 public class ConfigFile implements IConfigFile {
 
+    // An example of fetching our configFolder
     @Inject
     @Named("ConfigFolder")
     private File configFolder;
 
-    @Inject
-    private Methods methods;
+    // An example of fetching our methods instance.
+    @Inject private Methods methods;
 
-    @Inject
-    private ExamplePlugin plugin;
+    // An example of fetching our plugin instance.
+    @Inject private ExamplePlugin plugin;
 
-    @Inject
-    private FileManager fileManager;
+    // An example of fetching our fileManager instance.
+    @Inject private FileManager fileManager;
 
+    // Our blank file we re-assign and pass around.
     private File blankFile = null;
 
     private void create() {

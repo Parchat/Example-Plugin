@@ -14,13 +14,11 @@ import java.util.HashMap;
 @Singleton
 public class FileManager {
 
-    // Fetch our plugin instance.
-    @Inject
-    private ExamplePlugin plugin;
+    // An example of fetching our plugin instance.
+    @Inject private ExamplePlugin plugin;
 
-    // Inject our Methods class.
-    @Inject
-    private Methods methods;
+    // An example of fetching our methods instance.
+    @Inject private Methods methods;
 
     // Stores our files like ConfigFile, so we can get & set or reload
     private final HashMap<String, FileConfiguration> fileConfigurations = new HashMap<>();

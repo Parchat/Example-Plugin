@@ -19,18 +19,24 @@ public class ExamplePlugin extends JavaPlugin {
 
     private Injector injector;
 
+    // Defines if plugin is enabled or not.
     private boolean isEnabled = false;
 
+
+    // An example of fetching our manager instances.
     @Inject private ExampleManager exampleManager;
 
     @Inject private FileManager fileManager;
 
+    // An example of injecting our listeners.
     @Inject private ExampleListener listener;
 
+    // An example of injecting our example commands.
     @Inject private ExampleCommand command;
 
     @Inject private ExampleTab tab;
 
+    // An example of injecting our config instance.
     @Inject private ConfigFile configFile;
 
     @Inject private LangFile langFile;
@@ -64,6 +70,8 @@ public class ExamplePlugin extends JavaPlugin {
 
             pluginManager.registerEvents(listener, this);
 
+            // Register commands
+            // The value enclosed in getCommand("") must match the plugin.yml
             getCommand("example").setExecutor(command);
             getCommand("example").setTabCompleter(tab);
         } catch (Exception e) {

@@ -9,26 +9,27 @@ import me.example.exampleplugin.api.FileManager;
 import me.example.exampleplugin.api.config.interfaces.IConfigFile;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-
 import java.io.File;
 import java.io.InputStream;
 
 @Singleton
 public class LangFile implements IConfigFile {
 
+    // An example of fetching our configFolder
     @Inject
     @Named("ConfigFolder")
     private File configFolder;
 
-    @Inject
-    private Methods methods;
+    // An example of fetching our methods instance.
+    @Inject private Methods methods;
 
-    @Inject
-    private ExamplePlugin plugin;
+    // An example of fetching our plugin instance.
+    @Inject private ExamplePlugin plugin;
 
-    @Inject
-    private FileManager fileManager;
+    // An example of fetching our fileManager instance.
+    @Inject private FileManager fileManager;
 
+    // Our blank file we re-assign and pass around.
     private File blankFile = null;
 
     private void create() {

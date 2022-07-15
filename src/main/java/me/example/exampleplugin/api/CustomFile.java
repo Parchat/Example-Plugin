@@ -12,13 +12,13 @@ public class CustomFile {
     private final String fileName;
     private final String homeFolder;
 
-    // our file configuration
+    // Our file configuration
     FileConfiguration file;
 
-    // A blank file variable we pass around
+    // A blank file variable we pass around.
     private final File blankFile;
 
-    // Our example plugin
+    // An example of fetching our plugin instance.
     private final ExamplePlugin plugin;
 
     // If we should log or not.
@@ -38,10 +38,10 @@ public class CustomFile {
 
         this.loggable = loggable;
 
-        File newFile = new File(this.plugin.getDataFolder(), "/" + homeFolder);
+        File newFile = new File(plugin.getDataFolder(), "/" + homeFolder);
         File namedFile = new File(newFile, "/" + name);
 
-        blankFile = new File(this.plugin.getDataFolder(), "/" + homeFolder + "/" + fileName);
+        blankFile = new File(plugin.getDataFolder(), "/" + homeFolder + "/" + fileName);
 
         if (newFile.exists()) {
             if (namedFile.exists()) {
@@ -55,7 +55,7 @@ public class CustomFile {
 
         newFile.mkdirs();
 
-        if (this.loggable) this.plugin.getLogger().info("The folder " + homeFolder + "/ was not found so it was created.");
+        if (loggable) plugin.getLogger().info("The folder " + homeFolder + "/ was not found so it was created.");
 
         file = null;
     }
@@ -95,7 +95,7 @@ public class CustomFile {
         try {
             file.save(blankFile);
 
-            if (this.loggable) plugin.getLogger().info("Saved " + fileName + ".");
+            if (loggable) plugin.getLogger().info("Saved " + fileName + ".");
 
             return true;
         } catch (Exception e) {
@@ -106,7 +106,7 @@ public class CustomFile {
             }
         }
 
-        if (this.loggable) plugin.getLogger().warning("There was a null custom file that could not be found!");
+        if (loggable) plugin.getLogger().warning("There was a null custom file that could not be found!");
 
         return false;
     }
@@ -119,7 +119,7 @@ public class CustomFile {
         try {
             file = YamlConfiguration.loadConfiguration(blankFile);
 
-            if (this.loggable) plugin.getLogger().info("Reloaded " + fileName + ".");
+            if (loggable) plugin.getLogger().info("Reloaded " + fileName + ".");
         } catch (Exception e) {
             plugin.getLogger().warning("Could not save " + fileName + "!");
 
@@ -128,7 +128,7 @@ public class CustomFile {
             }
         }
 
-        if (this.loggable) plugin.getLogger().warning("There was a null custom file that could not be found!");
+        if (loggable) plugin.getLogger().warning("There was a null custom file that could not be found!");
 
         return false;
     }
