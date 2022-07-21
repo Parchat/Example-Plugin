@@ -28,6 +28,8 @@ repositories {
     // A centralized hub for dependencies
     mavenCentral()
 
+    maven("https://jitpack.io")
+
     // Paper API
     maven("https://repo.papermc.io/repository/maven-public/")
 }
@@ -63,7 +65,7 @@ tasks {
 
     reobfJar {
         // Set the output name based on your project name & version.
-        outputJar.set(rootProject.layout.buildDirectory.file("../run/plugins/${rootProject.name}-v[${rootProject.version}].jar"))
+        outputJar.set(rootProject.layout.buildDirectory.file("${rootProject.name}-v[${rootProject.version}].jar"))
     }
 
     assemble {

@@ -7,10 +7,11 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
+// A listener example.
 public class ExampleListener implements Listener {
 
-    @Inject
-    private ExamplePlugin plugin;
+    // An example of injecting our plugin instance.
+    @Inject private ExamplePlugin plugin;
 
     @EventHandler
     public void onAsyncChatEvent(AsyncChatEvent event) {

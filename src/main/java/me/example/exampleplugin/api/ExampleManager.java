@@ -1,30 +1,36 @@
 package me.example.exampleplugin.api;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import me.example.exampleplugin.ExamplePlugin;
+import me.example.exampleplugin.api.config.ConfigFile;
+import me.example.exampleplugin.api.config.LangFile;
 
+@Singleton
 public class ExampleManager {
 
-    @Inject private final ExamplePlugin plugin;
+    // An example of fetching our plugin instance.
+    @Inject private ExamplePlugin plugin;
 
-    private boolean isEnabled = false;
+    // An example of fetching our config instance.
+    @Inject private ConfigFile configFile;
 
-    public ExampleManager(ExamplePlugin plugin) {
-        this.plugin = plugin;
-    }
+    @Inject private LangFile langFile;
 
     // Load your plugin and related code.
     public void load() {
         plugin.getLogger().info("Guten Tag!");
 
-        if (!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
-
-        isEnabled = true;
+        // Load the files.
+        configFile.load();
+        langFile.load();
     }
 
     public void stop() {
-        if (!isEnabled) return;
+        plugin.getLogger().info("Bis Später");
 
-        plugin.getLogger().info("See you later!");
+        // Save the files.
+        configFile.save();
+        langFile.save();
     }
 }
