@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 // A listener example.
+@Singleton
 public class ExampleListener implements Listener {
 
     // An example of injecting our plugin instance.

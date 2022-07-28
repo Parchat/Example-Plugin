@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Tab complete handling
+@Singleton
 public class ExampleTab implements TabCompleter {
+
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         List<String> completions = new ArrayList<>();

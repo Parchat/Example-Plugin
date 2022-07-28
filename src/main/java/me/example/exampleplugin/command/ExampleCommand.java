@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 // A command example
+@Singleton
 public class ExampleCommand implements CommandExecutor {
 
     // An example of injecting our plugin instance.

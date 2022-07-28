@@ -37,9 +37,9 @@ repositories {
 // Your Dependencies
 dependencies {
     // Paper API
-    compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.19.1-R0.1-SNAPSHOT")
 
-    paperDevBundle("1.19-R0.1-SNAPSHOT")
+    paperDevBundle("1.19.1-R0.1-SNAPSHOT")
 
     // An example of how to use implementation
     implementation("io.papermc:paperlib:1.0.7") {
